@@ -27,13 +27,6 @@
     --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #090b10; --sheet: #10131b; --surface: #161a24; --ink: #e8ecf5; --ink-2: #9aa4b8; --muted: #6b748a;
-      --rule: #232937; --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14); --study: #3fd39c; --study-soft: rgba(63,211,156,0.16);
-      color-scheme: dark;
-    }
-  }
   :root[data-theme="dark"] {
     --paper: #090b10; --sheet: #10131b; --surface: #161a24; --ink: #e8ecf5; --ink-2: #9aa4b8; --muted: #6b748a;
     --rule: #232937; --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14); --study: #3fd39c; --study-soft: rgba(63,211,156,0.16);
@@ -91,6 +84,12 @@
   .downloads a.primary { background: var(--accent); color: var(--sheet); }
   .downloads a:hover { text-decoration: none; background: var(--accent-soft); }
   .downloads a.primary:hover { background: var(--accent); opacity: 0.9; }
+  .theme-btn { position: fixed; top: max(12px, env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px));
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; padding: 5px 9px; border-radius: 4px; cursor: pointer;
+    background: var(--sheet); color: var(--ink-2); border: 1px solid var(--rule); }
+  .theme-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media print { .theme-btn { display: none; } }
   footer.site { max-width: 1040px; margin: 16px auto 0; font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-align: center; }
 
   /* Career timeline */
@@ -182,6 +181,7 @@
 </style>
 </head><body>
 
+<button class="theme-btn" id="theme-btn" type="button" aria-label="Switch to dark mode">Dark</button>
 <div class="sheet">
   <header>
     <div class="who">
@@ -433,4 +433,20 @@
   </div>
 </div>
 <footer class="site">Updated October 2026 · hand-written HTML, no tracking</footer>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme-btn');
+  function apply(t) {
+    if (t === 'dark') root.setAttribute('data-theme', 'dark'); else root.removeAttribute('data-theme');
+    btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+    btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  var saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {}
+  apply(saved === 'dark' ? 'dark' : 'light');
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    apply(next); try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+})();
+</script>
 </body></html>
