@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kevin George · Backend Software Engineer</title>
+<meta name="description" content="Kevin George, backend software engineer in Germany (Java, Spring Boot, microservices, cloud). Resume, projects and AI-native workflow.">
+<meta property="og:title" content="Kevin George · Backend Software Engineer">
+<meta property="og:description" content="Java / Spring Boot microservices, cloud, and an AI-native workflow. Resume and projects.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://kevin123george.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d5fb8'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EKG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: a ledger sheet. Name band on top, career timeline strip, then a narrow reference column (skills, education)
+     beside a wide main column (experience as dated ledger rows, projects). Ledger Terminal tokens from Cashflow Atlas. */
+  :root {
+    --paper: #f6f7f9;
+    --sheet: #ffffff;
+    --surface: #eef1f6;
+    --ink: #0b0e14;
+    --ink-2: #4b5566;
+    --muted: #8a93a3;
+    --rule: #e3e7ee;
+    --accent: #1d5fb8;
+    --accent-soft: rgba(29,95,184,0.12);
+    --study: #1baf7a;
+    --study-soft: rgba(27,175,122,0.16);
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #090b10; --sheet: #10131b; --surface: #161a24; --ink: #e8ecf5; --ink-2: #9aa4b8; --muted: #6b748a;
+      --rule: #232937; --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14); --study: #3fd39c; --study-soft: rgba(63,211,156,0.16);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #090b10; --sheet: #10131b; --surface: #161a24; --ink: #e8ecf5; --ink-2: #9aa4b8; --muted: #6b748a;
+    --rule: #232937; --accent: #6ea8ff; --accent-soft: rgba(110,168,255,0.14); --study: #3fd39c; --study-soft: rgba(63,211,156,0.16);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 32px 48px;
+  }
+  .sheet {
+    max-width: 1040px; margin: 0 auto; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px;
+    padding: clamp(20px, 4vw, 48px);
+    display: grid; gap: 32px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+
+  /* Header */
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 32px;
+    border-bottom: 2px solid var(--ink); padding-bottom: 24px; }
+  .who { display: grid; gap: 6px; min-width: 0; }
+  h1 { font-size: clamp(32px, 5vw, 46px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+  .role { font-family: var(--font-mono); font-size: 14px; color: var(--accent); font-weight: 500; }
+  .contact { display: grid; gap: 4px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-2); min-width: 0; }
+  .contact span, .contact a { overflow-wrap: anywhere; }
+
+  .summary { font-size: 16px; color: var(--ink); max-width: 72ch; margin: 0; }
+
+  /* Specialization band */
+  .spec { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; }
+  .spec > div { display: grid; gap: 8px; align-content: start; padding: 18px 20px; border-radius: 4px; min-width: 0; }
+  .spec-core { background: var(--accent); color: var(--sheet); }
+  .spec-core .label { color: var(--sheet); opacity: 0.75; }
+  .spec-ext { border: 1px dashed var(--accent); background: var(--accent-soft); }
+  .spec h2 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+  .spec ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+  .spec p { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .spec .proof { font-size: 12.5px; font-family: var(--font-mono); color: var(--accent); }
+  .spec .chips span { background: var(--sheet); }
+  @media (max-width: 700px) { .spec { grid-template-columns: minmax(0, 1fr); } }
+
+  .downloads { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .downloads a { font-family: var(--font-mono); font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 4px;
+    border: 1px solid var(--accent); color: var(--accent); }
+  .downloads a.primary { background: var(--accent); color: var(--sheet); }
+  .downloads a:hover { text-decoration: none; background: var(--accent-soft); }
+  .downloads a.primary:hover { background: var(--accent); opacity: 0.9; }
+  footer.site { max-width: 1040px; margin: 16px auto 0; font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-align: center; }
+
+  /* Career timeline */
+  .timeline { display: grid; gap: 10px; }
+  .tl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .legend { display: flex; gap: 16px; font-size: 12px; color: var(--ink-2); flex-wrap: wrap; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+  .track { position: relative; height: 64px; }
+  .lane { position: absolute; left: 0; right: 0; height: 26px; background: var(--surface); border-radius: 3px; }
+  .lane.work { top: 0; }
+  .lane.study { top: 32px; height: 14px; background: transparent; }
+  .seg { position: absolute; top: 0; bottom: 0; border-radius: 3px; display: flex; align-items: center; padding: 0 7px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; }
+  .seg.ft { background: var(--accent); color: var(--sheet); }
+  .seg.ws { background: var(--accent-soft); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .seg.ms { background: var(--study-soft); color: var(--study); box-shadow: inset 0 0 0 1px var(--study); font-size: 10px; }
+  .years { position: absolute; left: 0; right: 0; top: 50px; height: 14px; font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+  .years span { position: absolute; transform: translateX(-50%); }
+  .years span::before { content: ""; position: absolute; left: 50%; top: -5px; height: 4px; border-left: 1px solid var(--muted); }
+
+  /* Two columns */
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); gap: 40px; }
+  .side, .main { display: grid; gap: 32px; align-content: start; min-width: 0; }
+  section { display: grid; gap: 14px; min-width: 0; }
+  section > .label { border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
+
+  /* Skills */
+  .skills { display: grid; gap: 14px; }
+  .skills h3 { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .chips span { font-family: var(--font-mono); font-size: 11.5px; padding: 2px 7px; border-radius: 3px; background: var(--surface); color: var(--ink-2); }
+
+  .edu { display: grid; gap: 16px; }
+  .edu-item { display: grid; gap: 3px; }
+  .edu-item h3 { font-size: 14px; font-weight: 600; line-height: 1.35; }
+  .edu-item .sub { font-size: 13px; color: var(--ink-2); }
+  .mono { font-family: var(--font-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 13.5px; color: var(--ink-2); }
+  .langs { display: grid; gap: 6px; font-size: 13.5px; }
+  .langs div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--rule); padding-bottom: 6px; }
+  .langs span:last-child { color: var(--ink-2); font-family: var(--font-mono); font-size: 12px; }
+
+  /* Experience ledger rows */
+  .job { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 4px 20px; padding-block: 4px 18px; border-bottom: 1px solid var(--rule); }
+  .job:last-child { border-bottom: 0; padding-bottom: 0; }
+  .when { display: grid; gap: 4px; align-content: start; padding-top: 3px; }
+  .tag { justify-self: start; font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 1px 6px; border-radius: 3px; }
+  .tag.ft { background: var(--accent); color: var(--sheet); }
+  .tag.ws { color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .what { display: grid; gap: 6px; min-width: 0; }
+  .what h3 { font-size: 16px; font-weight: 600; }
+  .what h3 b { color: var(--accent); font-weight: 600; }
+  .place { font-size: 13px; color: var(--muted); }
+  .what ul { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; color: var(--ink-2); }
+  .what li::marker { color: var(--muted); }
+  .num { font-family: var(--font-mono); font-weight: 600; color: var(--ink); font-size: 0.93em; }
+  .tbd { font-style: italic; color: var(--muted); }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .proj { border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+  .proj h3 { font-size: 15px; font-weight: 600; }
+  .proj .stack { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+  .proj p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .tagnote { margin: 0; font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+  .group { font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 6px; }
+  .ptop { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; flex-wrap: wrap; }
+  .btag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.04em; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+  .btag.hand { color: var(--study); box-shadow: inset 0 0 0 1px var(--study); background: var(--study-soft); }
+  .btag.ai { color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-soft); }
+  .proj.wide-soft { grid-column: 1 / -1; }
+  .proj code { font-family: var(--font-mono); font-size: 0.9em; }
+  .proj.wide { grid-column: 1 / -1; border-color: var(--accent); background: var(--accent-soft); }
+  .proj ul { margin: 2px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13.5px; color: var(--ink-2); }
+  .more { display: grid; gap: 6px; font-size: 13.5px; color: var(--ink-2); margin: 0; padding-left: 18px; }
+
+  @media (max-width: 760px) {
+    .cols { grid-template-columns: minmax(0, 1fr); }
+    .main { order: -1; }
+    .projects { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .job { grid-template-columns: minmax(0, 1fr); }
+    .when { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .seg span.long { display: none; }
+    .years span:nth-child(even) { display: none; }
+  }
+</style>
+</head><body>
+
+<div class="sheet">
+  <header>
+    <div class="who">
+      <h1>Kevin George</h1>
+      <div class="role">Backend Software Engineer · Java / Spring Boot · Cloud · AI-native workflow</div>
+    </div>
+    <div class="contact">
+      <span>Hannover, Germany</span>
+      <span>techatkevin@gmail.com</span>
+      <a href="https://www.linkedin.com/in/kevin-george123">linkedin.com/in/kevin-george123</a>
+      <a href="https://github.com/kevin123george">github.com/kevin123george</a>
+      <div class="downloads">
+        <a class="primary" href="Kevin-George-Resume.pdf">Resume PDF</a>
+        <a href="Kevin-George-Lebenslauf.pdf">Lebenslauf (DE)</a>
+      </div>
+    </div>
+  </header>
+
+  <p class="summary">Backend software engineer with 7 years in industry across India and Germany: about 4 years full-time, now at TomTom, plus 2.5 years as a working student. I specialize in Java/Spring Boot microservices, event-driven systems and cloud platforms (AWS, GCP, Azure), and I have SRE and data-analysis experience at Amazon scale. Outside work, I build and run a self-hosted platform of 10+ production services, all deployed, monitored and backed up on my own home lab. I work AI-native: I run Claude Code agents with defined roles, review gates and written decision records, and I ship and operate everything they build.</p>
+
+  <div class="spec">
+    <div class="spec-core">
+      <span class="label">Specialization · core</span>
+      <h2>Backend and microservice architecture</h2>
+      <ul>
+        <li>Service design and boundaries: gateways, auth and roles, carts, checkout, inventory, booking</li>
+        <li>API design (REST, GraphQL) and event-driven integration (Pub/Sub, SQS)</li>
+        <li>Data modeling and performance on PostgreSQL, Redis and MongoDB, including JPA/Hibernate tuning</li>
+        <li>Running services in production: Docker, Kubernetes, CI/CD, monitoring, root-cause analysis</li>
+      </ul>
+    </div>
+    <div class="spec-ext">
+      <span class="label">Full stack with AI agents</span>
+      <h2>Everything around it, delivered with Claude Code</h2>
+      <p>I direct and review AI agents to deliver the rest of the stack, while I keep ownership of architecture and quality.</p>
+      <div class="chips"><span>Front end</span><span>Data viz</span><span>Mobile</span><span>DevOps</span><span>Rust tooling</span><span>AI media pipelines</span></div>
+      <p class="proof">Proof: every project below runs in production on my own infrastructure.</p>
+    </div>
+  </div>
+
+  <div class="timeline" aria-label="Career timeline from August 2019 to today">
+    <div class="tl-head">
+      <span class="label">Career, Aug 2019 to today</span>
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i>Full-time</span>
+        <span><i style="background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)"></i>Working student</span>
+        <span><i style="background:var(--study-soft);box-shadow:inset 0 0 0 1px var(--study)"></i>M.Sc. Bamberg</span>
+      </div>
+    </div>
+    <div class="track">
+      <div class="lane work">
+        <div class="seg ft" style="left:0;width:31.03%" title="SayOne Technologies, Aug 2019 – Nov 2021">SayOne</div>
+        <div class="seg ft" style="left:31.03%;width:6.9%" title="Soroco, Nov 2021 – Apr 2022">Soroco</div>
+        <div class="seg ws" style="left:43.68%;width:6.9%" title="4.screen, Oct 2022 – Mar 2023">4.s</div>
+        <div class="seg ws" style="left:50.57%;width:28.74%" title="MediaMarktSaturn, Apr 2023 – Apr 2025">MediaMarkt<span class="long">Saturn</span></div>
+        <div class="seg ft" style="left:79.31%;width:20.69%" title="TomTom, May 2025 – present">TomTom</div>
+      </div>
+      <div class="lane study">
+        <div class="seg ms" style="left:43.68%;width:34.48%" title="M.Sc. International Software Systems Science, 2022 – 2025">M.Sc.</div>
+      </div>
+      <div class="years" aria-hidden="true">
+        <span style="left:5.75%">2020</span><span style="left:19.54%">2021</span><span style="left:33.33%">2022</span>
+        <span style="left:47.13%">2023</span><span style="left:60.92%">2024</span><span style="left:74.71%">2025</span><span style="left:88.51%">2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <aside class="side">
+      <section>
+        <div class="label">Skills</div>
+        <div class="skills">
+          <div><h3>Languages</h3><div class="chips"><span>Java 21</span><span>Python</span><span>TypeScript</span><span>JavaScript</span><span>Kotlin</span><span>Rust</span><span>Dart</span><span>SQL</span><span>Bash</span></div></div>
+          <div><h3>Backend</h3><div class="chips"><span>Spring Boot 3</span><span>Spring Cloud</span><span>Microservices</span><span>Event-driven</span><span>REST</span><span>GraphQL</span><span>JPA/Hibernate</span><span>Flyway</span><span>Micronaut</span><span>Django</span><span>FastAPI</span></div></div>
+          <div><h3>Data</h3><div class="chips"><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Redis</span><span>Cassandra</span><span>Elasticsearch</span><span>BigQuery</span><span>Athena</span></div></div>
+          <div><h3>Cloud</h3><div class="chips"><span>AWS</span><span>GCP</span><span>Pub/Sub</span><span>Cloud Run</span><span>GKE</span><span>Azure</span></div></div>
+          <div><h3>DevOps</h3><div class="chips"><span>Docker</span><span>Kubernetes</span><span>GitHub Actions</span><span>Jenkins</span><span>GitLab CI</span><span>Prometheus</span><span>Grafana</span><span>Linux</span></div></div>
+          <div><h3>Testing</h3><div class="chips"><span>JUnit</span><span>Mockito</span></div></div>
+          <div><h3>Front end and mobile</h3><div class="chips"><span>React</span><span>Vue</span><span>React Native</span><span>Flutter</span><span>SVG data viz</span></div></div>
+          <div><h3>AI</h3><div class="chips"><span>Claude Code</span><span>MCP</span><span>Agent orchestration</span><span>Hooks</span><span>Context design</span><span>ComfyUI</span><span>Whisper</span><span>Ollama</span><span>TensorFlow</span></div></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Education</div>
+        <div class="edu">
+          <div class="edu-item">
+            <span class="mono">2022 – 2025</span>
+            <h3>M.Sc. International Software Systems Science</h3>
+            <span class="sub">Otto-Friedrich-Universität Bamberg</span>
+            <span class="sub">Thesis: data-driven cattle-farm platform with anomaly detection and what-if simulation (<a href="https://github.com/kevin123george/2024-MA-Kevin-George">code</a>)</span>
+          </div>
+          <div class="edu-item">
+            <span class="mono">2015 – 2019</span>
+            <h3>B.Tech Computer Science and Engineering</h3>
+            <span class="sub">Dr. A.P.J. Abdul Kalam Technical University, India · top of class</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Languages</div>
+        <div class="langs">
+          <div><span>English</span><span>fluent</span></div>
+          <div><span>Malayalam</span><span>native</span></div>
+          <div><span>German</span><span>basic</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="label">Achievements</div>
+        <ul class="plain">
+          <li>State champion, TCS IT Wiz 2014, India's largest tech quiz</li>
+          <li>Paper: <a href="https://www.ijsiet.org/vol42019/25.pdf">Research on a Virtual Assistant based on TensorFlow</a> (IJSIET, 2019)</li>
+          <li>IBM Data Science Professional Certificate</li>
+        </ul>
+      </section>
+    </aside>
+
+    <main class="main">
+      <section>
+        <div class="label">Experience</div>
+
+        <article class="job">
+          <div class="when"><span class="mono">May 2025 – now</span><span class="tag ft">Full-time</span></div>
+          <div class="what">
+            <h3>Software Engineer · <b>TomTom</b></h3>
+            <span class="place">Germany, hybrid</span>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="when"><span class="mono">Apr 2023 – Apr 2025</span><span class="tag ws">Working student</span></div>
+          <div class="what">
+            <h3>Software Developer · <b>MediaMarktSaturn</b></h3>
+            <span class="place">Ingolstadt</span>
+            <ul>
+              <li>Built and maintained internal financial operations and reporting tools in Java/Spring Boot on Google Cloud Platform.</li>
+              <li>Set up alerting for critical system events on Google Cloud Pub/Sub.</li>
+              <li>Automated deployments with GitHub Actions, making GCP deployments <span class="num">15%</span> more efficient.</li>
+              <li>Integrated microservices and REST APIs and streamlined data pipelines with the Business Intelligence team.</li>
+              <li>Reviewed code and mentored other working students on microservice architecture.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="when"><span class="mono">Oct 2022 – Mar 2023</span><span class="tag ws">Working student</span></div>
+          <div class="what">
+            <h3>Software Engineer · <b>4.screen</b></h3>
+            <span class="place">Munich</span>
+            <ul>
+              <li>Developed Java/Spring Boot microservices in the Software Development and Architecture team.</li>
+              <li>Cut latency by <span class="num">10%</span> by tuning Hibernate/JPA and optimizing PostgreSQL queries.</li>
+              <li>Monitored performance with Grafana, worked on Azure with SQL Server, and wrote tests with JUnit and Mockito.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="when"><span class="mono">Nov 2021 – Apr 2022</span><span class="tag ft">Full-time</span></div>
+          <div class="what">
+            <h3>Software Engineer, SRE · <b>Soroco</b></h3>
+            <span class="place">Bangalore, India, hybrid</span>
+            <ul>
+              <li>Built and ran automation systems in AWS for Amazon as the client, raising automation efficiency from <span class="num">70%</span> to <span class="num">86%</span>.</li>
+              <li>Remediated software-assurance risks, fixed bugs and led root-cause analysis for client issues.</li>
+              <li>Python, Pandas, Django and PostgreSQL, plus AWS RDS, CloudWatch, EC2, S3, SQS, VPC and IAM.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="when"><span class="mono">Aug 2019 – Nov 2021</span><span class="tag ft">Full-time</span></div>
+          <div class="what">
+            <h3>Software Engineer · <b>SayOne Technologies</b></h3>
+            <span class="place">Kochi, India, hybrid</span>
+            <ul>
+              <li>Was the earliest engineer on eTailPet's Sellit point-of-sale SaaS. Helped design its microservice architecture and built the cart, checkout, authentication and gateway services.</li>
+              <li>Designed the database and REST APIs for Bookit, an appointment-booking system for pet services.</li>
+              <li>Built an analytics platform over multi-tenant PostgreSQL data with AWS Athena and QuickSight.</li>
+              <li>Led planning and architecture reviews with the CTO, and interviewed and onboarded new hires across <span class="num">4</span> projects.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <div class="label">Selected projects</div>
+        <p class="tagnote"><span class="btag hand">Hand-built</span> I wrote it before using AI agents. <span class="btag ai">AI-assisted</span> I designed, directed and reviewed it, with Claude Code writing much of the code; counts come from the repos' commit co-author lines.</p>
+
+        <h3 class="group">Backend and microservices</h3>
+        <div class="projects">
+          <div class="proj">
+            <div class="ptop"><h3>Cattle-farm platform · M.Sc. thesis</h3><span class="btag hand">Hand-built</span></div>
+            <span class="stack">Spring Boot · Docker Compose · Metabase · 2024–25</span>
+            <p>Four Spring Boot microservices (ingestion, anomaly-detection watcher, simulation, front end) over farm sensor data, with SmartSPEC what-if simulation and Metabase dashboards. <a href="https://github.com/kevin123george/2024-MA-Kevin-George">Code</a></p>
+          </div>
+          <div class="proj">
+            <div class="ptop"><h3>SimCattle simulator</h3><span class="btag hand">Hand-built</span></div>
+            <span class="stack">Python · Go · JS · MySQL · Docker · K8s · 2024</span>
+            <p>Polyglot microservices (gateway, configuration, location and SmartSPEC services, web UI) that learn animal-location models from ground-truth data. Starts with one <code>make up</code> and ships Kubernetes manifests.</p>
+          </div>
+          <div class="proj wide-soft">
+            <div class="ptop"><h3>E-commerce microservices</h3><span class="btag hand">Hand-built</span></div>
+            <span class="stack">Java · Spring Boot · Spring Cloud · PostgreSQL · MongoDB · 2021–22</span>
+            <p>Service set with a <a href="https://github.com/kevin123george/geto-kanrisha">gateway</a>, <a href="https://github.com/kevin123george/ninsho-kanrisha">auth with roles</a>, <a href="https://github.com/kevin123george/kato-kanrisha">basket</a> and <a href="https://github.com/kevin123george/zaiko-kanrisha">inventory</a> services, plus a polyglot-persistence variant on PostgreSQL and MongoDB.</p>
+          </div>
+        </div>
+
+        <h3 class="group">Built with AI agents</h3>
+        <div class="projects">
+          <div class="proj wide">
+            <div class="ptop"><h3>Agent engineering harness and Decision Atlas</h3><span class="btag ai">AI-assisted · all commits</span></div>
+            <span class="stack">Claude Code · MCP · hooks · git worktrees · Forgejo</span>
+            <ul>
+              <li>Multi-agent setup on Claude Code: <span class="num">8</span> role-based agents (dev, ops, QA, finance and more), each with its own scope and hard limits.</li>
+              <li>Guardrails: one git worktree per task, hooks, MCP servers for the home server and browser, and verification against real renders.</li>
+              <li>Decision Atlas maps every decision record, open item and live agent session across <span class="num">15</span> repos as a network, with health checks and deadlines.</li>
+            </ul>
+          </div>
+          <div class="proj">
+            <div class="ptop"><h3>Cashflow Atlas</h3><span class="btag ai">AI-assisted · 92/114</span></div>
+            <span class="stack">Spring Boot 3 · Java 21 · PostgreSQL · Flyway · Bun</span>
+            <p>Finance platform with about 9,000 lines of Java backend: imports, a live portfolio refreshed every 10 s, a tax archive, Prometheus/Grafana metrics, a backtest bench for 7 strategies and an AOP-traced job pipeline.</p>
+          </div>
+          <div class="proj">
+            <div class="ptop"><h3>Code Atlas</h3><span class="btag ai">AI-assisted · 18/18</span></div>
+            <span class="stack">Rust · ratatui · tree-sitter · LSP</span>
+            <p>About 24,500 lines of Rust: an IntelliJ-style terminal editor with 20+ grammars, a custom JSON-RPC LSP client, git review, a built-in terminal and an agents panel. <a href="https://github.com/kevin123george/code-atlas">Code</a></p>
+          </div>
+          <div class="proj">
+            <div class="ptop"><h3>Tech in 60</h3><span class="btag ai">AI-assisted · 73/76</span></div>
+            <span class="stack">Python · ComfyUI · FLUX · Wan 2.2 · Whisper</span>
+            <p>Fully automated YouTube channel: a pipeline writes, voices, illustrates, renders and publishes videos on a weekly timetable. A GPU node wakes on demand.</p>
+          </div>
+          <div class="proj">
+            <div class="ptop"><h3>Little Bamberg</h3><span class="btag ai">AI-assisted · 16/23</span></div>
+            <span class="stack">TypeScript · three.js · cannon-es · Bun · Python</span>
+            <p>3D browser game: walk or drive a truck through a streamed map of Germany with 17 real cities and landmarks, in Malayalam or English, with a leaderboard. <a href="https://github.com/kevin123george/little-bamberg">Code</a></p>
+          </div>
+        </div>
+        <ul class="more">
+          <li><b>Home lab platform</b> <span class="btag ai">AI-assisted</span>: 10+ self-hosted services with Tailscale, Prometheus, Grafana, nightly backups, a Forgejo git forge and a custom app store.</li>
+          <li>Also 5 React Native/Expo Android apps, a German-equities data pipeline, and an <a href="https://github.com/kevin123george/fur-alle">open-data dashboard</a> for Germany's 400+ districts.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</div>
+<footer class="site">Updated October 2026 · hand-written HTML, no tracking</footer>
+</body></html>
